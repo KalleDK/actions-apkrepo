@@ -20,6 +20,12 @@ inputs:
   abuild_key_name:
     description: 'Name of RSA Key to sign the package'
     required: true
+  abuild_repo_url:
+    description: 'Url for repo'
+    required: true
+  abuild_repo_name:
+    description: 'Repo name'
+    required: true
 
 runs:
   using: 'docker'
