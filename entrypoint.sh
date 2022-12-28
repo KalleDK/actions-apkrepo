@@ -17,7 +17,6 @@ export GIT_COMMIT=${INPUT_ABUILD_PKG_COMMIT}
 export PKG_VER=${INPUT_ABUILD_PKG_VER}
 export ABUILD_DIR=~/.abuild
 
-cd dist
 
 ls -la
 ls -la dist
