@@ -20,7 +20,7 @@ cat << EOF > ./apk/index.md
 
 \`\`\`bash
 # Install key
-wget -O "/etc/apk/keys/${INPUT_ABUILD_KEY_NAME}.rsa.pub" "${BASE_URL}/${REPONAME}/apk/${KEY_NAME}.rsa.pub"
+wget -O "/etc/apk/keys/${INPUT_ABUILD_KEY_NAME}.rsa.pub" "${BASE_URL}/${REPONAME}/apk/${INPUT_ABUILD_KEY_NAME}.rsa.pub"
 
 # Install repo
 echo "${BASE_URL}/${REPONAME}/apk" >> /etc/apk/repositories
