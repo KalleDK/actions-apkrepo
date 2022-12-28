@@ -17,8 +17,12 @@ export GIT_COMMIT=${INPUT_ABUILD_PKG_COMMIT}
 export PKG_VER=${INPUT_ABUILD_PKG_VER}
 export ABUILD_DIR=~/.abuild
 
+cd dist
+
 ls -la
 
 apk index -o APKINDEX.unsigned.tar.gz *.apk
+
+ls -la
 
 echo "::endgroup::"
