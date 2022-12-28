@@ -13,5 +13,5 @@ cp ${INPUT_ABUILD_KEY_NAME}.rsa.pub ./apk-repo/
 cp ./dist/*.apk ./apk-repo/
 cp ./dist/APKINDEX.tar.gz ./apk-repo/
 ls -la ./apk-repo
-echo "::set-output name=repo_path::./apk-repo"
+echo "repo_path=./apk-repo" >> $GITHUB_OUTPUT
 echo "::endgroup::"
