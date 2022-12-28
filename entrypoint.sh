@@ -20,9 +20,12 @@ export ABUILD_DIR=~/.abuild
 cd dist
 
 ls -la
+ls -la dist
 
-apk index -o APKINDEX.unsigned.tar.gz *.apk
+apk index -o ./dist/APKINDEX.tar.gz ./dist/*.apk
+abuild-sign -k ./apk.rsa ./dist/APKINDEX.tar.gz
 
 ls -la
+ls -la dist
 
 echo "::endgroup::"
