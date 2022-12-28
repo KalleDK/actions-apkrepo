@@ -10,11 +10,11 @@ export BASE_URL=${INPUT_ABUILD_REPO_URL}
 
 apk index -o ./dist/APKINDEX.tar.gz ./dist/*.apk
 abuild-sign -k $(pwd)/${INPUT_ABUILD_KEY_NAME}.rsa ./dist/APKINDEX.tar.gz
-mkdir ./apk
+mkdir ./apk/x86_64
 cp ${INPUT_ABUILD_KEY_NAME}.rsa.pub ./apk/
-cp ./dist/*.apk ./apk/
-cp ./dist/APKINDEX.tar.gz ./apk/
-ls -la ./apk
+cp ./dist/*.apk ./apk/x86_64/
+cp ./dist/APKINDEX.tar.gz ./apk/x86_64/
+find ./apk
 cat << EOF > ./apk/index.md
 # ACME DNS Proxy
 
