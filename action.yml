@@ -1,0 +1,42 @@
+# action.yml
+name: 'Alpine Build APK'
+author: 'Kalle M. Aagaard <alpine@k-moeller.dk>'
+description: 'Build Alpine Package'
+outputs:
+  repo_path:
+    description: "Path with repo"
+  key_name:
+    description: "Name of signing key"
+inputs:
+  abuild_prefix:
+    description: 'Folder APKBUILD is in'
+    required: false
+  abuild_packager:
+    description: 'Who is the packager'
+    required: true
+  abuild_key:
+    description: 'RSA Key to sign the package'
+    required: false
+  abuild_key_pub:
+    description: 'Public RSA Key to verify the package'
+    required: false
+  abuild_key_name:
+    description: 'Name of RSA Key to sign the package'
+    required: false
+  abuild_pkg_ver:
+    description: 'The version of the software being packaged'
+    required: false
+  abuild_pkg_rel:
+    description: 'Alpine package release number'
+    required: false
+  abuild_repo_url:
+    description: 'Url for repo'
+    required: false
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+
+branding:
+  icon: 'package'  
+  color: 'blue'
