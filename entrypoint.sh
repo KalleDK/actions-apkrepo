@@ -22,7 +22,7 @@ ls -la
 ls -la dist
 
 apk index -o ./dist/APKINDEX.tar.gz ./dist/*.apk
-abuild-sign -k ./apk.rsa ./dist/APKINDEX.tar.gz
+abuild-sign -k $(pwd)/apk.rsa ./dist/APKINDEX.tar.gz
 
 ls -la
 ls -la dist
