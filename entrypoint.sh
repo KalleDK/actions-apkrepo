@@ -10,7 +10,7 @@ export BASE_URL=${INPUT_ABUILD_REPO_URL}
 
 apk index -o ./dist/APKINDEX.tar.gz ./dist/*.apk
 abuild-sign -k $(pwd)/${INPUT_ABUILD_KEY_NAME}.rsa ./dist/APKINDEX.tar.gz
-mkdir ./apk/x86_64
+mkdir -p ./apk/x86_64
 cp ${INPUT_ABUILD_KEY_NAME}.rsa.pub ./apk/
 cp ./dist/*.apk ./apk/x86_64/
 cp ./dist/APKINDEX.tar.gz ./apk/x86_64/
