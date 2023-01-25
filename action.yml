@@ -14,7 +14,7 @@ inputs:
   abuild_key_name:
     description: 'Name of RSA Key to sign the package'
     required: true
-  abuild_key:
+  abuild_key_priv:
     description: 'Private RSA Key to sign the package'
     required: true
   abuild_key_pub:
