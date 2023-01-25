@@ -61,16 +61,17 @@ wget -O "/etc/apk/keys/${PUBLIC_KEY_NAME}" "${REPO_URL}/${PUBLIC_KEY_NAME}"
 echo "${REPO_URL}" >> /etc/apk/repositories
 
 \`\`\` 
-Link [x86_64](https://google.com)
-Link [x86_64](./x86_64.md)
-Link [x86_64](apk/x86_64.md)
-Link [x86_64](x86_64/index.md)
-Link [x86_64](apk/x86_64/index.md)
-Link [x86_64](/x86_64.md)
-Link [x86_64](/apk/x86_64.md)
-Link [x86_64](/x86_64/index.md)
-Link [x86_64](/apk/x86_64/index.md)
-Flaf <a href="x86_64">word</a>
+
+* Sub [Sub](x86_64/acmednsproxy/acmednsproxy-openrc-0.1.5.apk)
+* Sub [Sub](./x86_64/acmednsproxy/acmednsproxy-openrc-0.1.5.apk)
+* Link [x86_64](x86_64.md)
+* Link [x86_64](x86_64.md)
+* Link [x86_64](x86_64)
+* Link [x86_64](x86_64/index.md)
+* Link [x86_64](./x86_64.md)
+* Link [x86_64](./x86_64)
+* Link [x86_64](./x86_64/index.md)
+
 EOF
 
 cat << EOF > "${REPO_DIR}/x86_64.md"
