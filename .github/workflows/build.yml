@@ -9,6 +9,14 @@ jobs:
     name: Build Binary
     runs-on: ubuntu-latest
     steps:
+      - name: Get tag
+        id: get_tag
+        run: |
+          version=$(git tag -l --sort=-version:refname v* | head -n 1)
+          a=( ${version//./ } )
+          ((a[2]++))
+          echo "${a[0]}.${a[1]}.${a[2]}"
+          echo "new_tag=${a[0]}.${a[1]}.${a[2]}" >> $GITHUB_OUTPUT
       - name: Create tag
         uses: actions/github-script@v5
         with:
@@ -16,6 +24,6 @@ jobs:
             github.rest.git.createRef({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              ref: 'refs/tags/v0.0.30',
+              ref: refs/tags/${{ steps.get_tag.outputs.new_tag }},
               sha: context.sha
             })
