@@ -3,21 +3,20 @@
 set -ex
 
 echo "::group::Setup"
-
 export PACKAGER="${INPUT_ABUILD_PACKAGER}"
 export BUILD_DIR=./.apk
 export APKREPO="${BUILD_DIR}/repo"
 export APKKEYS="${BUILD_DIR}/keys"
+echo "::endgroup::"
 
 echo "::group::Setup Build Dir"
 mkdir -p ${BUILD_DIR}
 echo "::endgroup::"
-echo "::endgroup::"
 
 echo "::group::Setup Keys"
 mkdir -p ${APKKEYS}
-printf -- '${INPUT_ABUILD_KEY_PRIV}' > ${APKKEYS}/${INPUT_ABUILD_KEY_NAME}.rsa
-printf -- '${INPUT_ABUILD_KEY_PUB}' > ${APKKEYS}/${INPUT_ABUILD_KEY_NAME}.rsa.pub
+printf -- "${INPUT_ABUILD_KEY_PRIV}" > {APKKEYS}/${INPUT_ABUILD_KEY_NAME}.rsa
+printf -- "${INPUT_ABUILD_KEY_PUB}" > {APKKEYS}/${INPUT_ABUILD_KEY_NAME}.rsa.pub
 ls -la "${APKKEYS}"
 echo "::endgroup::"
 
@@ -49,6 +48,20 @@ echo "${INPUT_ABUILD_REPO_URL}" >> /etc/apk/repositories
 \`\`\` 
 EOF
 
+echo "::endgroup::"
+
+echo "::group::Create"
+echo h22
+echo "::endgroup::"
+
+echo "::group::Create"
+echo h0
+echo "::group::Create::sub"
+echo h1
+echo "::endgroup::"
+echo "::group::Create::sub2"
+echo h2
+echo "::endgroup::"
 echo "::endgroup::"
 
 echo "repo_path=${APKREPO}" >> $GITHUB_OUTPUT
