@@ -1,0 +1,21 @@
+on:
+  push:
+    branches:
+    - main
+
+name: Make Snapshot
+jobs:
+  tagger:
+    name: Build Binary
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create tag
+        uses: actions/github-script@v5
+        with:
+          script: |
+            github.rest.git.createRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: 'refs/tags/v0.0.30',
+              sha: context.sha
+            })
