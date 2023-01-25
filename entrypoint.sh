@@ -1,8 +1,39 @@
 #!/usr/bin/env sh
 
-set -ex
+set -x
 
-set +x; echo "::group::Setup"; set -x
+make_arch() {
+    ARCH=$1
+
+    echo "::group::Sign ${ARCH}"
+    mkdir -p "${REPO_DIR}/${ARCH}"
+    
+    cp ${ARCH}/*/*.apk ${REPO_DIR}/${ARCH}/
+    apk index -o ${REPO_DIR}/${ARCH}/APKINDEX.tar.gz ${REPO_DIR}/${ARCH}/*.apk
+    abuild-sign -k ${PRIVATE_KEY} ${REPO_DIR}/${ARCH}/APKINDEX.tar.gz
+    
+
+    cat << EOF > "${REPO_DIR}/${ARCH}/index.md"
+# List ${ARCH}
+
+\`\`\`bash
+# Install key
+wget -O "/etc/apk/keys/${PUBLIC_KEY_NAME}" "${REPO_URL}/${PUBLIC_KEY_NAME}"
+
+# Install repo
+echo "${REPO_URL}" >> /etc/apk/repositories
+
+\`\`\` 
+EOF
+
+    for x in $(find "${REPO_DIR}/${ARCH}" -type f -name '*.apk' -exec basename {} \;); do echo "* [$x]($x)"; done >> "${REPO_DIR}/${ARCH}/index.md"
+    
+    echo "* [${ARCH}](${ARCH}/)" >> "${REPO_DIR}/index.md"
+
+    echo "::endgroup::"
+}
+
+echo "::group::Setup"
 export PACKAGER="${INPUT_ABUILD_PACKAGER}"
 
 export REPO_URL="${INPUT_ABUILD_REPO_URL}"
@@ -22,38 +53,23 @@ export PUBLIC_KEY_NAME="${INPUT_ABUILD_KEY_NAME}.rsa.pub"
 export PUBLIC_KEY="${KEYS_DIR}/${PUBLIC_KEY_NAME}"
 
 
-set +x; echo "::endgroup::"; set -x
+echo "::endgroup::"
 
-set +x; echo "::group::Setup Build Dir"; set -x
+echo "::group::Setup Build Dir"
 mkdir -p ${BUILD_DIR}
-set +x; echo "::endgroup::"; set -x
+echo "::endgroup::"
 
-set +x; echo "::group::Setup Keys"; set -x
+echo "::group::Setup Keys"
 mkdir -p ${KEYS_DIR}
 printf -- "${INPUT_ABUILD_KEY_PRIV}" > ${PRIVATE_KEY}
 printf -- "${INPUT_ABUILD_KEY_PUB}" > ${PUBLIC_KEY}
-set +x; echo "::endgroup::"; set -x
+echo "::endgroup::"
 
-set +x; echo "::group::Setup Repo"; set -x
+echo "::group::Setup Repo"
 mkdir -p ${REPO_DIR}
-set +x; echo "::endgroup::"; set -x
-
-set +x; echo "::group::Sign x86_64"; set -x
-mkdir -p ${REPO_DIR}/x86_64
-cp ./x86_64/*/*.apk ${REPO_DIR}/x86_64/
-apk index -o ${REPO_DIR}/x86_64/APKINDEX.tar.gz ${REPO_DIR}/x86_64/*.apk
-abuild-sign -k "${PRIVATE_KEY}" "${REPO_DIR}/x86_64/APKINDEX.tar.gz"
-set +x; echo "::endgroup::"; set -x
-
-set +x; echo "::group::Add public key"; set -x
 cp "${PUBLIC_KEY}" "${REPO_DIR}/"
-set +x; echo "::endgroup::"; set -x
 
-set +x; echo "::group::Create index"; set -x
-
-cd "${REPO_DIR}"
-
-cat << EOF > index.md
+cat << EOF > ${REPO_DIR}/index.md
 # ACME DNS Proxy
 
 \`\`\`bash
@@ -65,28 +81,10 @@ echo "${REPO_URL}" >> /etc/apk/repositories
 
 \`\`\` 
 
-* [x86_64](x86_64/index.md)
-* [x86_64](x86_64/)
-
 EOF
 
-cd x86_64
+echo "::endgroup::"
 
-cat << EOF > index.md
-# x86_64 List
-
-\`\`\`bash
-# Install key
-wget -O "/etc/apk/keys/${PUBLIC_KEY_NAME}" "${REPO_URL}/${PUBLIC_KEY_NAME}"
-
-# Install repo
-echo "${REPO_URL}" >> /etc/apk/repositories
-
-\`\`\` 
-EOF
-
-for x in *.apk; do echo "* [$x]($x)"; done >> index.md
-
-set +x; echo "::endgroup::"; set -x
+make_arch x86_64
 
 echo "repo_path=${REPO_DIR_REL}" >> $GITHUB_OUTPUT
