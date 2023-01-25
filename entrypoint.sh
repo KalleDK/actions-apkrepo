@@ -60,7 +60,9 @@ wget -O "/etc/apk/keys/${PUBLIC_KEY_NAME}" "${REPO_URL}/${PUBLIC_KEY_NAME}"
 # Install repo
 echo "${REPO_URL}" >> /etc/apk/repositories
 
-Link [x86_64](x86_64)
+Link [x86_64](/x86_64)
+Link [x86_64](/apk/x86_64)
+Flaf <a href="x86_64">word</a>
 
 \`\`\` 
 EOF
