@@ -3,7 +3,7 @@ on:
     branches:
     - main
 
-name: Make Snapshot
+name: Raise tag on main
 jobs:
   tagger:
     name: Build Binary
@@ -14,7 +14,7 @@ jobs:
         id: get_tag
         run: |
           set -e
-          git fetch --tags >> /dev/null
+          git fetch --tags -q
           version=$(git tag -l --sort=-version:refname v* | head -n 1)
           echo "From: $version"
           a=( ${version//./ } )
