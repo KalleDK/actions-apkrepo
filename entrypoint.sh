@@ -59,6 +59,22 @@ wget -O "/etc/apk/keys/${PUBLIC_KEY_NAME}" "${REPO_URL}/${PUBLIC_KEY_NAME}"
 
 # Install repo
 echo "${REPO_URL}" >> /etc/apk/repositories
+
+Link [x86_64](x86_64)
+
+\`\`\` 
+EOF
+
+cat << EOF > "${REPO_DIR}/x86_64/index.md"
+# x86_64 DNS Proxy
+
+\`\`\`bash
+# Install key
+wget -O "/etc/apk/keys/${PUBLIC_KEY_NAME}" "${REPO_URL}/${PUBLIC_KEY_NAME}"
+
+# Install repo
+echo "${REPO_URL}" >> /etc/apk/repositories
+
 \`\`\` 
 EOF
 
