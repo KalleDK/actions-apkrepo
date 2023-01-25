@@ -1,10 +1,10 @@
 #!/usr/bin/env sh
 
-set -ex
+set -e
 
 echo "::group::Setup"
 export PACKAGER="${INPUT_ABUILD_PACKAGER}"
-export BUILD_DIR=./.apk
+export BUILD_DIR=${GITHUB_WORKSPACE}/.apk
 export APKREPO="${BUILD_DIR}/repo"
 export APKKEYS="${BUILD_DIR}/keys"
 echo "::endgroup::"
