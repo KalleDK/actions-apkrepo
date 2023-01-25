@@ -13,7 +13,10 @@ jobs:
       - name: Get tag
         id: get_tag
         run: |
+          set -ex
+          git tag -l --sort=-version:refname v* | head -n 1
           version=$(git tag -l --sort=-version:refname v* | head -n 1)
+          echo $version
           a=( ${version//./ } )
           ((a[2]++))
           echo "${a[0]}.${a[1]}.${a[2]}"
