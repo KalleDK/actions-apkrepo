@@ -6,10 +6,11 @@ on:
 name: Raise tag on main
 jobs:
   tagger:
-    name: Build Binary
+    name: Raise Tag
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3
       - name: Get tag
         id: get_tag
         run: |
