@@ -60,9 +60,28 @@ wget -O "/etc/apk/keys/${PUBLIC_KEY_NAME}" "${REPO_URL}/${PUBLIC_KEY_NAME}"
 # Install repo
 echo "${REPO_URL}" >> /etc/apk/repositories
 
-Link [x86_64](/x86_64)
-Link [x86_64](/apk/x86_64)
+Link [x86_64](x86_64.md)
+Link [x86_64](apk/x86_64.md)
+Link [x86_64](x86_64/index.md)
+Link [x86_64](apk/x86_64/index.md)
+Link [x86_64](/x86_64.md)
+Link [x86_64](/apk/x86_64.md)
+Link [x86_64](/x86_64/index.md)
+Link [x86_64](/apk/x86_64/index.md)
 Flaf <a href="x86_64">word</a>
+
+\`\`\` 
+EOF
+
+cat << EOF > "${REPO_DIR}/x86_64.md"
+# x86_64 sub DNS Proxy
+
+\`\`\`bash
+# Install key
+wget -O "/etc/apk/keys/${PUBLIC_KEY_NAME}" "${REPO_URL}/${PUBLIC_KEY_NAME}"
+
+# Install repo
+echo "${REPO_URL}" >> /etc/apk/repositories
 
 \`\`\` 
 EOF
