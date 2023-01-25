@@ -14,8 +14,9 @@ jobs:
         id: get_tag
         run: |
           set -ex
-          git tag --tags
-          git tag v0.0.30
+          git tag -l
+          git tag -l v0.0.30
+          git tag -l v0.0.34
           git tag -l --sort=-version:refname v* | head -n 1
           version=$(git tag -l --sort=-version:refname v* | head -n 1)
           echo $version
