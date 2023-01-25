@@ -12,11 +12,13 @@ export APKKEYS="${BUILD_DIR}/keys"
 echo "::group::Setup Build Dir"
 mkdir -p ${BUILD_DIR}
 echo "::endgroup::"
+echo "::endgroup::"
 
 echo "::group::Setup Keys"
 mkdir -p ${APKKEYS}
 printf -- '${INPUT_ABUILD_KEY_PRIV}' > ${APKKEYS}/${INPUT_ABUILD_KEY_NAME}.rsa
 printf -- '${INPUT_ABUILD_KEY_PUB}' > ${APKKEYS}/${INPUT_ABUILD_KEY_NAME}.rsa.pub
+ls -la "${APKKEYS}"
 echo "::endgroup::"
 
 echo "::group::Setup Repo"
@@ -27,7 +29,7 @@ echo "::group::Sign x86_64"
 mkdir -p ${APKREPO}/x86_64
 cp ./x86_64/*/*.apk ${APKREPO}/x86_64/
 apk index -o ${APKREPO}/x86_64/APKINDEX.tar.gz ${APKREPO}/x86_64/*.apk
-abuild-sign -k ${APKKEYS}/${INPUT_ABUILD_KEY_NAME}.rsa ${APKREPO}/x86_64/APKINDEX.tar.gz
+abuild-sign -k "${APKKEYS}/${INPUT_ABUILD_KEY_NAME}.rsa" "${APKREPO}/x86_64/APKINDEX.tar.gz"
 echo "::endgroup::"
 
 echo "::group::Add public key"
