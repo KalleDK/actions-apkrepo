@@ -13,13 +13,13 @@ jobs:
       - name: Get tag
         id: get_tag
         run: |
-          set -ex
-          git fetch --tags
+          set -e
+          git fetch --tags >> /dev/null
           version=$(git tag -l --sort=-version:refname v* | head -n 1)
-          echo $version
+          echo "From: $version"
           a=( ${version//./ } )
           ((a[2]++))
-          echo "${a[0]}.${a[1]}.${a[2]}"
+          echo "To: ${a[0]}.${a[1]}.${a[2]}"
           echo "new_tag=${a[0]}.${a[1]}.${a[2]}" >> $GITHUB_OUTPUT
       - name: Create tag
         uses: actions/github-script@v6
