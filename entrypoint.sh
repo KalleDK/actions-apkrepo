@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-set -x
+set -e
 
 make_arch() {
     ARCH=$1
