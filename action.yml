@@ -1,5 +1,5 @@
 # action.yml
-name: 'Alpine Build APK'
+name: 'Create APK Repository'
 author: 'Kalle M. Aagaard <alpine@k-moeller.dk>'
 description: 'Build Alpine Package'
 outputs:
