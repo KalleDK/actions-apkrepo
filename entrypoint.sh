@@ -50,7 +50,10 @@ cp "${PUBLIC_KEY}" "${REPO_DIR}/"
 set +x; echo "::endgroup::"; set -x
 
 set +x; echo "::group::Create index"; set -x
-cat << EOF > "${REPO_DIR}/index.md"
+
+cd "${REPO_DIR}"
+
+cat << EOF > index.md
 # ACME DNS Proxy
 
 \`\`\`bash
@@ -62,20 +65,15 @@ echo "${REPO_URL}" >> /etc/apk/repositories
 
 \`\`\` 
 
-* Sub [Sub](x86_64/acmednsproxy/acmednsproxy-openrc-0.1.5.apk)
-* Sub [Sub](./x86_64/acmednsproxy/acmednsproxy-openrc-0.1.5.apk)
-* Link [x86_64](x86_64.md)
-* Link [x86_64](x86_64.md)
-* Link [x86_64](x86_64)
-* Link [x86_64](x86_64/index.md)
-* Link [x86_64](./x86_64.md)
-* Link [x86_64](./x86_64)
-* Link [x86_64](./x86_64/index.md)
+* [x86_64](x86_64/index.md)
+* [x86_64](x86_64/)
 
 EOF
 
-cat << EOF > "${REPO_DIR}/x86_64.md"
-# x86_64 sub DNS Proxy
+cd x86_64
+
+cat << EOF > index.md
+# x86_64 List
 
 \`\`\`bash
 # Install key
@@ -87,18 +85,7 @@ echo "${REPO_URL}" >> /etc/apk/repositories
 \`\`\` 
 EOF
 
-cat << EOF > "${REPO_DIR}/x86_64/index.md"
-# x86_64 DNS Proxy
-
-\`\`\`bash
-# Install key
-wget -O "/etc/apk/keys/${PUBLIC_KEY_NAME}" "${REPO_URL}/${PUBLIC_KEY_NAME}"
-
-# Install repo
-echo "${REPO_URL}" >> /etc/apk/repositories
-
-\`\`\` 
-EOF
+for x in *.apk; do echo "* [$x]($x)"; done >> index.md
 
 set +x; echo "::endgroup::"; set -x
 
