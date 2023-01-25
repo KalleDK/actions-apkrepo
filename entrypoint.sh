@@ -15,8 +15,8 @@ echo "::endgroup::"
 
 echo "::group::Setup Keys"
 mkdir -p ${APKKEYS}
-printf -- "${INPUT_ABUILD_KEY_PRIV}" > {APKKEYS}/${INPUT_ABUILD_KEY_NAME}.rsa
-printf -- "${INPUT_ABUILD_KEY_PUB}" > {APKKEYS}/${INPUT_ABUILD_KEY_NAME}.rsa.pub
+printf -- "${INPUT_ABUILD_KEY_PRIV}" > ${APKKEYS}/${INPUT_ABUILD_KEY_NAME}.rsa
+printf -- "${INPUT_ABUILD_KEY_PUB}" > ${APKKEYS}/${INPUT_ABUILD_KEY_NAME}.rsa.pub
 ls -la "${APKKEYS}"
 echo "::endgroup::"
 
