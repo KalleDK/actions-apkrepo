@@ -15,7 +15,6 @@ jobs:
         id: get_tag
         run: |
           set -e
-          pip install jinja2-cli
           git fetch --tags -q
           version=$(git tag -l --sort=-version:refname v* | head -n 1)
           echo "From: $version"
