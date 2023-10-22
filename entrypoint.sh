@@ -3,13 +3,13 @@
 set -e
 
 make_arch() {
-    PKGS_DIR=$1
+    PKGS_PATH=$1
     ARCH=$2
 
     echo "::group::Sign ${ARCH}"
     mkdir -p "${REPO_DIR}/${ARCH}"
     
-    cp ${PKGS_DIR}/${ARCH}/*/*.apk ${REPO_DIR}/${ARCH}/
+    cp ${PKGS_PATH}/${ARCH}/*/*.apk ${REPO_DIR}/${ARCH}/
     apk index -o ${REPO_DIR}/${ARCH}/APKINDEX.tar.gz ${REPO_DIR}/${ARCH}/*.apk
     abuild-sign -k ${PRIVATE_KEY} ${REPO_DIR}/${ARCH}/APKINDEX.tar.gz
     
@@ -37,7 +37,7 @@ EOF
 echo "::group::Setup"
 export PACKAGER="${INPUT_ABUILD_PACKAGER}"
 
-export PKGS_DIR="${INPUT_PKGS_PATH}"
+export PKGS_PATH="${INPUT_PKGS_PATH}"
 export REPO_URL="${INPUT_ABUILD_REPO_URL}"
 
 export BUILD_DIR_REL=.apk
@@ -54,6 +54,9 @@ export PRIVATE_KEY="${KEYS_DIR}/${PRIVATE_KEY_NAME}"
 export PUBLIC_KEY_NAME="${INPUT_ABUILD_KEY_NAME}.rsa.pub"
 export PUBLIC_KEY="${KEYS_DIR}/${PUBLIC_KEY_NAME}"
 
+echo "Packager: $PACKAGER"
+echo "Package Dir: $PKGS_PATH"
+echo "Keyname: $PUBLIC_KEY_NAME"
 
 echo "::endgroup::"
 
@@ -87,6 +90,6 @@ EOF
 
 echo "::endgroup::"
 
-make_arch ${PKG_DIR} x86_64
+make_arch ${PKGS_PATH} x86_64
 
 echo "repo_path=${REPO_DIR_REL}" >> $GITHUB_OUTPUT
