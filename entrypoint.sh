@@ -56,7 +56,8 @@ export PUBLIC_KEY="${KEYS_DIR}/${PUBLIC_KEY_NAME}"
 
 echo "Packager: $PACKAGER"
 echo "Package Dir: $PKGS_PATH"
-echo "Keyname: $PUBLIC_KEY_NAME"
+echo "Keyname: ${INPUT_ABUILD_KEY_NAME}"
+echo "Keyname: ${PUBLIC_KEY_NAME}"
 
 echo "::endgroup::"
 
@@ -90,6 +91,6 @@ EOF
 
 echo "::endgroup::"
 
-make_arch ${PKGS_PATH} x86_64
+make_arch "${PKGS_PATH}" x86_64
 
 echo "repo_path=${REPO_DIR_REL}" >> $GITHUB_OUTPUT
