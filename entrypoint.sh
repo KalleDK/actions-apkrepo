@@ -3,12 +3,13 @@
 set -e
 
 make_arch() {
-    ARCH=$1
+    PKG_DIR=$1
+    ARCH=$2
 
     echo "::group::Sign ${ARCH}"
     mkdir -p "${REPO_DIR}/${ARCH}"
     
-    cp ${ARCH}/*/*.apk ${REPO_DIR}/${ARCH}/
+    cp ${PKG_DIR}/${ARCH}/*/*.apk ${REPO_DIR}/${ARCH}/
     apk index -o ${REPO_DIR}/${ARCH}/APKINDEX.tar.gz ${REPO_DIR}/${ARCH}/*.apk
     abuild-sign -k ${PRIVATE_KEY} ${REPO_DIR}/${ARCH}/APKINDEX.tar.gz
     
@@ -36,6 +37,7 @@ EOF
 echo "::group::Setup"
 export PACKAGER="${INPUT_ABUILD_PACKAGER}"
 
+export PKG_DIR="${INPUT_PKG_PATH}"
 export REPO_URL="${INPUT_ABUILD_REPO_URL}"
 
 export BUILD_DIR_REL=.apk
@@ -85,6 +87,6 @@ EOF
 
 echo "::endgroup::"
 
-make_arch x86_64
+make_arch ${PKG_DIR} x86_64
 
 echo "repo_path=${REPO_DIR_REL}" >> $GITHUB_OUTPUT
