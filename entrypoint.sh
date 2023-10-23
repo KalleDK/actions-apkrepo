@@ -76,7 +76,7 @@ mkdir -p ${REPO_DIR}
 cp "${PUBLIC_KEY}" "${REPO_DIR}/"
 
 cat << EOF > ${REPO_DIR}/index.md
-# ACME DNS Proxy
+# APK Registry
 
 \`\`\`bash
 # Install key
