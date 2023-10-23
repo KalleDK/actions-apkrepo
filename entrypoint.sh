@@ -9,7 +9,9 @@ make_arch() {
     echo "::group::Sign ${ARCH}"
     mkdir -p "${REPO_DIR}/${ARCH}"
     
-    cp ${PKGS_PATH}/${ARCH}/**/*.apk ${REPO_DIR}/${ARCH}/
+    for apk in $(find ${PKGS_PATH} -name "*-${ARCH}.apk"); do
+        cp $apk ${REPO_DIR}/${ARCH}/$(basename $apk | sed s/-${ARCH}\.apk/.apk/)
+    done
     apk index -o ${REPO_DIR}/${ARCH}/APKINDEX.tar.gz ${REPO_DIR}/${ARCH}/*.apk
     abuild-sign -k ${PRIVATE_KEY} ${REPO_DIR}/${ARCH}/APKINDEX.tar.gz
     
@@ -90,5 +92,6 @@ EOF
 echo "::endgroup::"
 
 make_arch "${PKGS_PATH}" x86_64
+make_arch "${PKGS_PATH}" x86
 
 echo "repo_path=${REPO_DIR_REL}" >> $GITHUB_OUTPUT
