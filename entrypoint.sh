@@ -9,7 +9,7 @@ make_arch() {
     echo "::group::Sign ${ARCH}"
     mkdir -p "${REPO_DIR}/${ARCH}"
     
-    cp ${PKGS_PATH}/${ARCH}/*/*.apk ${REPO_DIR}/${ARCH}/
+    cp ${PKGS_PATH}/${ARCH}/**/*.apk ${REPO_DIR}/${ARCH}/
     apk index -o ${REPO_DIR}/${ARCH}/APKINDEX.tar.gz ${REPO_DIR}/${ARCH}/*.apk
     abuild-sign -k ${PRIVATE_KEY} ${REPO_DIR}/${ARCH}/APKINDEX.tar.gz
     
@@ -57,8 +57,6 @@ export PUBLIC_KEY="${KEYS_DIR}/${PUBLIC_KEY_NAME}"
 echo "Packager: $PACKAGER"
 echo "Package Dir: $PKGS_PATH"
 echo "Keyname: ${INPUT_ABUILD_KEY_NAME}"
-echo "Keyname: ${PUBLIC_KEY_NAME}"
-
 echo "::endgroup::"
 
 echo "::group::Setup Build Dir"
