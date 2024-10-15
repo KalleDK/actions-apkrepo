@@ -13,7 +13,7 @@ make_arch() {
         cp $apk ${REPO_DIR}/${ARCH}/$(basename $apk | sed s/-${ARCH}\.apk/.apk/)
     done
     echo "Creating index for ${ARCH}"
-    apk index -o ${REPO_DIR}/${ARCH}/APKINDEX.tar.gz ${REPO_DIR}/${ARCH}/*.apk
+    apk index -o ${REPO_DIR}/${ARCH}/APKINDEX.tar.gz ${REPO_DIR}/${ARCH}/*.apk --allow-untrusted
     echo "Signing index for ${ARCH}"
     abuild-sign -k ${PRIVATE_KEY} ${REPO_DIR}/${ARCH}/APKINDEX.tar.gz
     
