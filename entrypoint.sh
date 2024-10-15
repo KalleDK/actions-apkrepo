@@ -12,7 +12,9 @@ make_arch() {
     for apk in $(find ${PKGS_PATH} -name "*-${ARCH}.apk"); do
         cp $apk ${REPO_DIR}/${ARCH}/$(basename $apk | sed s/-${ARCH}\.apk/.apk/)
     done
+    echo "Creating index for ${ARCH}"
     apk index -o ${REPO_DIR}/${ARCH}/APKINDEX.tar.gz ${REPO_DIR}/${ARCH}/*.apk
+    echo "Signing index for ${ARCH}"
     abuild-sign -k ${PRIVATE_KEY} ${REPO_DIR}/${ARCH}/APKINDEX.tar.gz
     
 
