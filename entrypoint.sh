@@ -62,6 +62,7 @@ echo "Keyname: ${INPUT_ABUILD_KEY_NAME}"
 echo "::endgroup::"
 
 echo "::group::Setup Build Dir"
+echo "Create build dir: ${BUILD_DIR}"
 mkdir -p ${BUILD_DIR}
 echo "::endgroup::"
 
