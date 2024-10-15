@@ -62,7 +62,6 @@ echo "Keyname: ${INPUT_ABUILD_KEY_NAME}"
 echo "::endgroup::"
 
 echo "::group::Setup Build Dir"
-echo "Create build dir: ${BUILD_DIR}"
 mkdir -p ${BUILD_DIR}
 echo "::endgroup::"
 
@@ -71,7 +70,8 @@ mkdir -p ${KEYS_DIR}
 printf -- "${INPUT_ABUILD_KEY_PRIV}" > ${PRIVATE_KEY}
 printf -- "${INPUT_ABUILD_KEY_PUB}" > ${PUBLIC_KEY}
 echo "::endgroup::"
-
+find .
+ls -la ${KEYS_DIR}
 echo "::group::Setup Repo"
 mkdir -p ${REPO_DIR}
 cp "${PUBLIC_KEY}" "${REPO_DIR}/"
