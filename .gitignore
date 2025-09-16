@@ -1,4 +1,5 @@
 /src
 /.apk
+/.apk_test
 /.mypy_cache
 /test-repo
