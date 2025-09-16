@@ -1,0 +1,39 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/alpine
+{
+	"name": "Alpine",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	"image": "mcr.microsoft.com/devcontainers/base:alpine-3.20",
+	"remoteEnv": {
+		"PATH": "${containerEnv:PATH}:~/.local/bin",
+		"INPUT_PKGS_PATH": "src",
+		"INPUT_ABUILD_REPO_URL": "https://example.com/repo",
+		"INPUT_ABUILD_PACKAGER": "Kalle M. Krog Aagaard <apk@k-moeller.dk>",
+		"INPUT_ABUILD_KEY_NAME": "apk@k-moeller.dk-68c96c1f",
+		"INPUT_ABUILD_KEY_PRIV": "-----BEGIN PRIVATE KEY-----\n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\ncay+t3TMKh+6G5RH3FI83+HI7dVW5w==\n-----END PRIVATE KEY-----",
+		"INPUT_ABUILD_KEY_PUB": "-----BEGIN PUBLIC KEY-----\nMIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAui3xdg4Cm8Q4YdT/iSQg\nBc5ysLoRKMrsOiwRHtcuBg7O7680SIRHCEaNWA7OCCuG/t+GlFYt6kftsto8aewn\nZVTU+YrQZQC6bT8/J85Pgbt8D+USi3NDsxPuLCRq+zbBzVzkEv8y72wkREzeJSZa\nL047+agdrznLAutI49O6cChjeI+coJBLSermFQ0r/sx6zRVhZ/gJVW0cr5GpUDWK\nsY5Eq1/jbCiUuIHSqB4eTdnD0ijhgtBjs3dYr4vF5OdfglnTIWu5wwtqbZ1KtG48\nwBuM85YY/feI3Amf7UMyHvK2GDaRryozWHnF1h68B4VEVyt56jr1fFlz3PuE0MmL\nlHl9N169lsz60vhjcvaFUpIz8Pbinh7lWRwf4JsgoR8wgTi6rSJ+JZ4wLsn2nYdH\nAaLzpw1bWJsqx1b9lRxsLE8gU0Lt3jmmSbAa9iP55lDoBkuOEKKTa874IXspkEDH\nR6AiOf5jVOJzECwzIVeAtcrH1n6xHa1rr0TECKimuBomZ59y9UKgueBGojUH8oA8\nkZJlJz9LmT8uvgAB7vyjbMG5yz4kOcE1ihqdDjzBdfohl1G0Iu9YWenAyeKtf/4v\nWU2qEroSh/6H+dGsfRfnp2O5gBrq7ZbUu+qAtq/O4VMgwt2KuIXxnEU46IC3YEeD\nlV3LHDj6kMMfThHeUaAvvy0CAwEAAQ==\n-----END PUBLIC KEY-----"
+	
+	},
+	"postCreateCommand": "sudo apk update && sudo apk add curl python3 abuild && curl -LsSf https://astral.sh/uv/install.sh | sh && /home/vscode/.local/bin/uv tool install ruff@latest",
+
+	
+	"customizations": {
+    "vscode": {
+      "extensions": ["ms-python.python", "charliermarsh.ruff"]
+    }
+  },
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	// "features": {},
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	// "postCreateCommand": "uname -a",
+
+	// Configure tool-specific properties.
+	// "customizations": {},
+
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	// "remoteUser": "root"
+}

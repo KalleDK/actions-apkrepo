@@ -97,4 +97,6 @@ echo "::endgroup::"
 make_arch "${PKGS_PATH}" x86_64
 make_arch "${PKGS_PATH}" x86
 
+python3 /apk-indexer.py
+
 echo "repo_path=${REPO_DIR_REL}" >> $GITHUB_OUTPUT
