@@ -288,10 +288,6 @@ class APKIndexer:
 
 def main() -> None:
     build_path = pathlib.Path(".apk")
-    
-
-    
-
     apki = APKIndexer.create(build_path)
     apki.prepare()
     pkgs = scan_dir_for_apks(pathlib.Path(os.environ["INPUT_PKGS_PATH"]))
