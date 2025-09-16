@@ -15,7 +15,7 @@
 		"GITHUB_OUTPUT": "~/github-output"
 	
 	},
-	"postCreateCommand": "sudo apk update && sudo apk add curl python3 abuild py3-pydantic py3-rich && curl -LsSf https://astral.sh/uv/install.sh | sh && /home/vscode/.local/bin/uv tool install ruff@latest && sh -c \"$(curl --location https://taskfile.dev/install.sh)\" -- -d -b ~/.local/bin",
+	"postCreateCommand": "sudo apk update && sudo apk add curl python3 abuild py3-pydantic py3-rich && curl -LsSf https://astral.sh/uv/install.sh | sh && /home/vscode/.local/bin/uv tool install ruff@latest && /home/vscode/.local/bin/uv tool install bump-my-version && sh -c \"$(curl --location https://taskfile.dev/install.sh)\" -- -d -b ~/.local/bin",
 
 	
 	"customizations": {
