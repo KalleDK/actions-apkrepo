@@ -117,9 +117,8 @@ sudo wget -O "/etc/apk/keys/{PUBLIC_KEY_NAME}" "{REPO_URL}/{PUBLIC_KEY_NAME}"
 echo "{REPO_URL}" >> /etc/apk/repositories
 echo "{REPO_URL}" | sudo tee -a /etc/apk/repositories
 
-{archs}
-
 ``` 
+{archs}
 """
 
 
@@ -143,10 +142,9 @@ sudo wget -O "/etc/apk/keys/{PUBLIC_KEY_NAME}" "{REPO_URL}/{PUBLIC_KEY_NAME}"
 # Install repo
 echo "{REPO_URL}" >> /etc/apk/repositories
 echo "{REPO_URL}" | sudo tee -a /etc/apk/repositories
-
+```
 {pkgs}
 
-```
 """
 
 
