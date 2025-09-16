@@ -153,7 +153,7 @@ echo "{REPO_URL}" | sudo tee -a /etc/apk/repositories
 def md_arch_index(
     arch: str, public_key_name: str, repo_url: str, pkgs: list[PKGINFO]
 ) -> str:
-    pkgs_lines = [md_pkg_line(pkg) for pkg in pkgs]
+    pkgs_lines = [md_pkg_line(pkg.filename) for pkg in pkgs]
     return ARCH_INDEX.format(
         ARCH=arch,
         PUBLIC_KEY_NAME=public_key_name,

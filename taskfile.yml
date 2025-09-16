@@ -1,0 +1,9 @@
+version: '3'
+
+tasks:
+  default:
+    cmds:
+      - git add .
+      - git commit -m "Update"
+      - bump-my-version bump patch
+      - git push --follow-tags
