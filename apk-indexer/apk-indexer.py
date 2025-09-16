@@ -287,12 +287,12 @@ class APKIndexer:
 
 
 def main() -> None:
-    build_path = pathlib.Path("/tmp/.apk_test")
+    build_path = pathlib.Path(".apk")
     
 
-    shutil.rmtree(build_path, ignore_errors=True)
+    
 
-    apki = APKIndexer.create(pathlib.Path("/tmp/.apk_test"))
+    apki = APKIndexer.create(build_path)
     apki.prepare()
     pkgs = scan_dir_for_apks(pathlib.Path(os.environ["INPUT_PKGS_PATH"]))
     apki.import_pkgs(pkgs)
