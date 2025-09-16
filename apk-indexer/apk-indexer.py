@@ -276,7 +276,7 @@ class APKIndexer:
             path=path.joinpath("repo"),
             keys=keys,
         )
-        return cls(key=keys, repcao=repo)
+        return cls(key=keys, repo=repo)
 
     def prepare(self):
         self.key.install()
