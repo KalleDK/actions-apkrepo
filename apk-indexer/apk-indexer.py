@@ -47,7 +47,7 @@ class KeyMgr:
         import subprocess
 
         std = subprocess.run(
-            ["abuild-sign", "-k", self.path / self.private_key_name, file],
+            ["abuild-sign", "-k", self.path.absolute() / self.private_key_name, file],
             capture_output=True,
             text=True,
         )
