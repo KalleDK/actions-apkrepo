@@ -8,7 +8,7 @@ import pydantic
 from rich.console import Console
 from rich.table import Table
 import subprocess
-import shutil
+
 
 console = Console()
 
