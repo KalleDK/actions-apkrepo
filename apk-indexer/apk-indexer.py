@@ -151,9 +151,9 @@ echo "{REPO_URL}" | sudo tee -a /etc/apk/repositories
 
 
 def md_arch_index(
-    arch: str, public_key_name: str, repo_url: str, pkgs: list[PKGINFO]
+    arch: str, public_key_name: str, repo_url: str, filenames: list[str]
 ) -> str:
-    pkgs_lines = [md_pkg_line(pkg.filename) for pkg in pkgs]
+    pkgs_lines = [md_pkg_line(filename) for filename in filenames]
     return ARCH_INDEX.format(
         ARCH=arch,
         PUBLIC_KEY_NAME=public_key_name,
@@ -220,7 +220,7 @@ class Repo:
                 arch=arch,
                 public_key_name=self.keys.public_key_name,
                 repo_url=self.repo_url,
-                pkgs=filenames,
+                filenames=filenames,
             )
             index_file.write_text(index_md)
 
@@ -237,6 +237,7 @@ class Repo:
                 archs=sorted(list(pkgs.keys())),
             )
         )
+        self.keys.install_public_key(self.path)
 
 
 def print_apk_summary(pkgs: dict[str, list[SourcePkg]]) -> None:
