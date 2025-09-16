@@ -7,3 +7,4 @@ tasks:
       - git commit -m "Update"
       - bump-my-version bump patch
       - git push --follow-tags
+      - bump-my-version show scm_info.current_tag
