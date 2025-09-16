@@ -256,7 +256,7 @@ def print_apk_summary(pkgs: dict[str, list[SourcePkg]]) -> None:
 def scan_dir_for_apks(dir: pathlib.Path) -> dict[str, list[SourcePkg]]:
     with with_group(f"Scanning '{dir}' for APKs"):
         pkgs: dict[str, list[SourcePkg]] = {}
-        for apk in dir.glob("*.apk"):
+        for apk in dir.glob("**/*.apk"):
             apk_info = get_apk_info(apk)
             apk_src = SourcePkg(path=apk, info=apk_info)
             pkgs.setdefault(apk_info.arch, []).append(apk_src)
