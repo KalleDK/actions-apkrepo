@@ -11,6 +11,7 @@
 			"alpine-devcontainer:latest"
 		]
 	},
+	"postAttachCommand": "python3 .devcontainer/setup_git.py",
 	"postCreateCommand": "python3 .devcontainer/setup_env.py",
 	"customizations": {
 		"vscode": {
