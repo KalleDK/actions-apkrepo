@@ -1,4 +1,4 @@
-# action.yml
+# $schema: https://www.schemastore.org/github-action.json
 name: 'Create APK Repository'
 author: 'Kalle M. Aagaard <alpine@k-moeller.dk>'
 description: 'Build Alpine Package'
@@ -9,10 +9,7 @@ inputs:
   pkgs_path:
     description: "Path with packages"
     required: false
-    default: "."
-  abuild_packager:
-    description: 'Who is the packager'
-    required: true
+    default: "pkgs"
   abuild_key_name:
     description: 'Name of RSA Key to sign the package'
     required: true
