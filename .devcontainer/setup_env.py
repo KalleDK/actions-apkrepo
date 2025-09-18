@@ -34,3 +34,5 @@ if not envrc_file.exists():
     abuild_path.rmdir()
 
 subprocess.run(['direnv', 'allow'], check=True)
+subprocess.run(["git", "config", "--global", "--unset-all", "credential.https://github.com.helper"], check=False)
+subprocess.run(["git", "config", "--global", "--unset-all", "credential.https://gist.github.com.helper"], check=False)
