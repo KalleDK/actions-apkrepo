@@ -3,6 +3,7 @@
 /.mypy_cache
 .envrc
 github-output
+
 # Ruff
 .ruff_cache
 
